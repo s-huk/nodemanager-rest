@@ -10,7 +10,7 @@ Das Maven-Projekt lässt sich direkt aus Eclipse/IDEA inkl. Neo4j heraus starten
 
 ### Testen des REST-Services:
 1. Dieses Projekt als Maven-Projekt importieren.
-2. Die Klasse Tests.java öffnen und ausführen.  
+2. Die Klasse Tests.java öffnen und ausführen als JUnit-Test.  
 
 Damit läuft nun der REST-Service. Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.
 
