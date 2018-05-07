@@ -8,7 +8,7 @@ Der REST-Service ist schön leichtgewichtig (nur Jersey/JAX-RS) und läuft derze
 Beispielsweise kann man den Graphen in Neo4j sehen und manipulieren während der REST-Service läuft. Das ist für das Debugging sehr praktisch.
 Das Maven-Projekt lässt sich direkt aus Eclipse/IDEA inkl. Neo4j heraus starten, ohne dass irgendetwas installiert werden muss. 
 
-### Installation für die Weiterentwicklung:
+### Testen des REST-Services:
 1. Dieses Projekt als Maven-Projekt importieren.
 2. Die Klasse Tests.java öffnen und ausführen.  
 
