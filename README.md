@@ -47,3 +47,5 @@ Die Features der GUI sind:
 - Mit Hilfe von OGM besteht die Möglichkeit, Graphen in vorgefertigte Klassen de-serialiseren lassen. 
 - Neo4j ist sehr leichtgewichtig und flexibel (muss nichtmal installiert werden)
 - Neo4j bietet eine sehr schöne Browseroberfläche, wo man seine Daten sehen und manipulieren kann. 
+
+Die Neo4j-Oberfläche ist dann erreichbar unter http://localhost:7474
