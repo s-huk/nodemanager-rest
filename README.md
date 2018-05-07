@@ -45,4 +45,5 @@ Die Features der GUI sind:
 - Bietet aber auch direkten Zugriff ohne Cypher, sodass man Knoten Laden und die Kanten dann nach belieben kann. 
 - Property-Maps ermöglichen die flexible Speicherung von Eigenschaften. So müssen keine starren Modellklassen geplant, gepflegt und konsistent gehalten werden. 
 - Mit Hilfe von OGM besteht die Möglichkeit, Graphen in vorgefertigte Klassen de-serialiseren lassen. 
-- Neo4j ist sehr leichtgewichtig und flexibel
+- Neo4j ist sehr leichtgewichtig und flexibel (muss nichtmal installiert werden)
+- Neo4j bietet eine sehr schöne Browseroberfläche, wo man seine Daten sehen und manipulieren kann. 
