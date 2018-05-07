@@ -1,0 +1,598 @@
+@CHARSET "UTF-8";
+
+
+
+* {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+
+body {
+	height: 100%;
+	min-height:100%;
+	background: #eee;
+	color: #444;
+	font-family: arial, verdana, sans-serif;
+	margin: 0px !important;
+	padding: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+#center{
+	background-color: white; 
+	position: relative;
+	top: 0px;
+    width: 100%;
+    height: 400px;
+}
+*/
+
+
+
+.fixedElem {
+	width: 20px !important;
+	opacity: 0.6 !important;
+	border-radius: 0px 0px 0px 0px !important;
+}
+
+
+.twice {
+    width: 167px !important;
+
+}
+
+
+
+#toolbarFogGraph {
+	top:300px;
+	height:96px;
+}
+
+.toolbar{
+	padding:5px;
+	padding-left:0px;
+	width: 32px;
+	background-color: #AAA;
+	position:absolute;
+	left:0px;
+	border-radius: 0px 20px 20px 0px;
+	z-index: 1000;
+}
+
+
+#btnSelect {
+	/*background: url(images/header_bg.png) left top repeat-y;*/
+	background: url(images/select.png) no-repeat;
+	border-radius: 0px 15px 0px 0px;
+}
+#btnErase {
+	/*background: url(images/header_bg.png) left top repeat-y;*/
+	background: url(images/erase.png) no-repeat;
+}
+#btnAddFog {
+	/*background: url(images/header_bg.png) left top repeat-y;*/
+	/*background: url(images/addFog.png) no-repeat;*/
+	background: url(images/cloudplus.png) no-repeat;
+	border-radius: 0px 0px 15px 0px;	
+}
+.toolbar-button{
+
+	height:24px;
+	width: 24px;
+	
+	padding:4px;
+	
+	float: left;
+	display:block;
+	clear: both;
+
+	background-size: auto !important;
+	background-position: center !important;
+	/*background-color: white !important;*/
+}
+.btnActive {
+	background-color: #d74119 !important;	/*#ddd*/
+}
+.btnEnabled:hover {
+	background-color: #ddd !important;	
+}
+.btnDisabled {
+	opacity: .4;
+}
+
+
+
+
+#canvas{
+    left:0px;
+    height:1px;
+    width:1px;
+
+	z-index: 0;
+	background-color: white;
+	/* border-left: 1px solid #CCC;*/
+	/* border-top: 1px solid #CCC;*/ 
+	position: relative;
+	float:none;
+	
+	-webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-ms-transform:scale(1);
+	-o-transform:scale(1);
+	transform:scale(1);
+    
+}
+#win{
+	/*background: url(images/bla.svg) left top no-repeat;	*/
+	background-size: 100% 100%;	  
+	background-color: #eee;
+    position: absolute; 
+    left: 0px; 
+    
+    top: 0px;  
+    right: 0px; 
+    bottom: 0px;	
+    overflow:hidden;
+	z-index: 0;
+	/*position: relative;*/
+	float:left;
+}
+
+/*
+#bgTitle {
+        width: 50%;
+        height: 50%;
+        min-height: 200px;
+        min-width: 200px;
+
+        position:absolute; 
+        left:0; right:0;
+        top:0; bottom:0;
+ 
+        margin:auto;
+
+        max-width:100%;
+        max-height:100%;
+        overflow: none;	
+
+        color: #EEE;
+        font-size: 500%;
+        text-align: center;
+        
+}
+*/
+
+#footer{
+    background-color:#111;
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    bottom:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a {
+	color: #008aff;
+}
+
+h1 {
+	color: #444;
+}
+
+h2 {
+	font-size: 24px;
+}
+
+h3 {
+	font-size: 18px;
+	
+	margin-top: 23px;
+	margin-bottom: 15px;
+
+}
+
+h2 span {
+	color: #008aff;
+	font-weight: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+._jsPlumb_connector { z-index:40; }
+._jsPlumb_endpoint { z-index:5; }
+._jsPlumb_overlay { z-index:6; }
+
+.jspDragHandle {
+	cursor: move;
+}
+
+
+
+
+.shape > .ep > p {
+    display: table-cell; 
+	vertical-align: middle; 
+  	text-align: center;  
+  	padding-left: 15px;
+    padding-right: 15px; 
+
+}
+
+.shape > .ep {
+	z-index:21;
+    /*z-index:20;*/
+    /*filter:alpha(opacity=80);*/
+    position:absolute;
+    cursor:pointer;
+    
+ 	width:100%;
+ 	/*height:53px;*/
+ 	left:0px;
+ 	top:45px;
+ 	height:50px;
+/*
+ 	background-color: yellow;
+ 	opacity: .5;
+*/ 	
+    color:#333;
+    
+    display: table;
+    vertical-align: middle; 
+    text-align:center;
+    
+    
+    
+/*
+    border-radius:38px / 42px;   
+	text-overflow:ellipsis;
+	background-color:#CCC; 
+*/	
+    
+/*    border:1px solid #777777;  */
+    
+    line-height:100%;
+    font-size: 19px;
+    
+    
+}
+
+
+
+#svgCloud {
+	z-index:20;
+	position: absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	
+}
+
+.shape #path3293 {
+	color:#000000;
+	clip-rule:nonzero;
+	display:inline;
+	overflow:visible;
+	visibility:visible;
+	opacity:1;
+	isolation:auto;
+	mix-blend-mode:normal;
+	color-interpolation:sRGB;
+	color-interpolation-filters:linearRGB;
+	solid-color:#000000;
+	solid-opacity:1;
+	fill:#5599ff;
+	fill-opacity:1;
+	fill-rule:nonzero;
+	stroke:#fff;
+	stroke-width:10.0;
+	stroke-linecap:round;
+	stroke-linejoin:round;
+	stroke-miterlimit:4;
+	stroke-dasharray:none;
+	stroke-dashoffset:0;
+	stroke-opacity:1;
+	color-rendering:auto;
+	image-rendering:auto;
+	shape-rendering:auto;
+	text-rendering:auto;
+	enable-background:accumulate;
+}
+.dragHover #path3293 { 
+	/*border:2px solid orange !important;*/
+	/*background-color:#888888; */
+	/*background-image: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' id='svg2719' version='1.1' viewBox='0 0 264.58338 169.95401' height='642.34583' width='1000.0002'> <defs id='defs2713'/> <metadata id='metadata2716'> </metadata> <g transform='translate(-130.77974,-122.06466)' id='layer1'> <path id='path3293' d='m 284.00314,122.06466 a 57.911863,57.911863 0 0 0 -47.4077,24.703 43.709289,43.709289 0 0 0 -15.5907,-2.928 43.709289,43.709289 0 0 0 -43.70901,43.709 43.709289,43.709289 0 0 0 0.25,4.256 50.164606,50.164606 0 0 0 -46.76599,50.045 50.164606,50.164606 0 0 0 49.65719,50.139 l -0.022,0.03 h 0.5192 156.51701 a 57.911863,57.911863 0 0 0 57.91198,-57.912 57.911863,57.911863 0 0 0 -53.59559,-57.695 57.911863,57.911863 0 0 0 -57.7851,-54.342 z' style='color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:yellow;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.00329208;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/> </g> </svg>");	*/
+	fill:yellow !important;
+
+}
+
+.jsplumb-drag-selected #path3293 { 
+	/*border:1px solid #2E3D4C !important;*/ 
+	/*background-color: #B72700;*/
+	/*background-image: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' id='svg2719' version='1.1' viewBox='0 0 264.58338 169.95401' height='642.34583' width='1000.0002'> <defs id='defs2713'/> <metadata id='metadata2716'> </metadata> <g transform='translate(-130.77974,-122.06466)' id='layer1'> <path id='path3293' d='m 284.00314,122.06466 a 57.911863,57.911863 0 0 0 -47.4077,24.703 43.709289,43.709289 0 0 0 -15.5907,-2.928 43.709289,43.709289 0 0 0 -43.70901,43.709 43.709289,43.709289 0 0 0 0.25,4.256 50.164606,50.164606 0 0 0 -46.76599,50.045 50.164606,50.164606 0 0 0 49.65719,50.139 l -0.022,0.03 h 0.5192 156.51701 a 57.911863,57.911863 0 0 0 57.91198,-57.912 57.911863,57.911863 0 0 0 -53.59559,-57.695 57.911863,57.911863 0 0 0 -57.7851,-54.342 z' style='color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#B72700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.00329208;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/> </g> </svg>");*/
+	/*background-size: 100% 100%;*/
+	fill:#B72700 !important;
+
+}
+.shape {
+	/*background: url(images/cloud.svg) left top no-repeat;*/
+    /*background-image: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' id='svg2719' version='1.1' viewBox='0 0 264.58338 169.95401' height='642.34583' width='1000.0002'> <defs id='defs2713'/> <metadata id='metadata2716'> </metadata> <g transform='translate(-130.77974,-122.06466)' id='layer1'> <path id='path3293' d='m 284.00314,122.06466 a 57.911863,57.911863 0 0 0 -47.4077,24.703 43.709289,43.709289 0 0 0 -15.5907,-2.928 43.709289,43.709289 0 0 0 -43.70901,43.709 43.709289,43.709289 0 0 0 0.25,4.256 50.164606,50.164606 0 0 0 -46.76599,50.045 50.164606,50.164606 0 0 0 49.65719,50.139 l -0.022,0.03 h 0.5192 156.51701 a 57.911863,57.911863 0 0 0 57.91198,-57.912 57.911863,57.911863 0 0 0 -53.59559,-57.695 57.911863,57.911863 0 0 0 -57.7851,-54.342 z' style='color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#5599ff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.00329208;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate'/> </g> </svg>");*/
+	/*background-size: 100% 100%;*/
+    z-index:20;
+    /*opacity:0.9;*/
+    position:absolute;
+    text-align:center;
+    /*color:#000;*/
+    /*display: table; */
+
+
+    width:160px; /*160x104*/
+    /*height:105px;*/
+    height:104px;
+    
+    left:250px;
+    top:300px;
+    line-height: 20px;
+    
+/*    border-radius:106px / 53px;   
+    background-color:#AAA; /*#CCC*/
+    
+/*    border-radius: 5px 5px 5px 5px;*/
+    /*transition: all 0.1s ease-out;*/
+    border-style: 2px solid black;
+}
+
+
+
+
+
+
+/* 
+div.shape .ep {
+display:none; 
+}
+
+div.shape:hover .ep {
+display:inline; 
+} 
+*/
+
+
+
+.rectangle {
+
+	opacity:0.6;
+/*    filter:alpha(opacity=10);*/
+/*    border-width: 1px;
+    border-style: solid;
+    border-color: black; 
+*/    
+    background-color: #d74119; 
+    position: absolute;
+    user-select: none; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ************************************** */
+/*                FogSettings             */
+
+
+
+
+#fogNameInput {
+    font-size: 1.4em;
+    width: 100%;
+}
+
+#assigneeSettings {
+    font-size: 1.2em;
+    width: 50%;	
+    margin-top: 10px;
+}
+
+
+
+
+select {
+    margin-top: 10px;
+    width: 300px;
+}
+
+#descriptionSettings {
+    width: 100%;
+    height: 100px;
+    margin: 0px 0px 10px 0px;
+}
+
+.settingsTable {
+	border-spacing: 0px;
+}
+
+
+div.buttonsSettings {
+    text-align: right;
+}
+
+#settingsWrapper {
+	
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+
+/* BEGIN Modal Content */
+#modalWin {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */    
+/*
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 0px;
+    display: none;
+*/    
+}
+#modalFrame {
+	opacity: .9;
+	position: relative;
+	top: 100px;
+	width:700px; 
+	/*height:600px; */
+	border: 1px solid black;  /*#888*/
+	background-color: #eee;
+	margin:auto	
+}
+/* The Close Button */
+#modalBar {
+	background-color: #d74119;
+	color: white;
+	/*width:100%;*/
+	height:16px;
+	padding:8px;
+}
+#modalCloseX {
+	position: relative;
+	display: inline-block;
+    float: right;
+    background: url(images/close.png) right top no-repeat;
+    width:16px;
+    height:16px;
+    
+}
+
+#modalCloseX:hover,
+#modalCloseX:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+#modalContent {
+	
+	/*padding-top:24px;*/
+	padding-left:20px;
+	padding-right:20px;
+	margin-top:0px;
+}
+#modalButtons {
+	/*padding:10px;*/
+	width: 100%;
+	height: 40px;
+	
+}
+#modalButtons button{
+	float: right;
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+/* END MODAL WINDOW */
+
+
+
