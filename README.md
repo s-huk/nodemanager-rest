@@ -25,7 +25,7 @@ Bei der GUI handelt es sich um statische HTML/CSS/JS Dateien im Verzeichnis **sr
 ### Installation für die Weiterentwicklung:
 1. Einen beliebigen Webserver installieren (für statische Inhalte genügt völlig)
 2. Das Verzeichnis **src\main\webapp** auf Port 8080 servieren
-
+3. Wenn auch der REST-Service gestartet ist, dann diese Adresse aufrufen: http://localhost:8080/index.html
 
 Die Features der GUI sind:
 
