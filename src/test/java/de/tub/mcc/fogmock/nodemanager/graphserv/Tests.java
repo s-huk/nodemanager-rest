@@ -1,4 +1,4 @@
-package de.tub.mcc.fogmock.nodemanager.test;
+package de.tub.mcc.fogmock.nodemanager.graphserv;
 
 import static org.neo4j.server.ServerTestUtils.getSharedTestTemporaryFolder;
 
@@ -33,7 +33,7 @@ import de.tub.mcc.fogmock.nodemanager.graphserv.SkeletonNode;
 import javax.swing.JOptionPane;
 import javax.ws.rs.core.MediaType;
 
-
+//python -m http.server 8080
 public class Tests {
 	
 	private RestRequest REST_REQUEST;
