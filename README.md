@@ -32,11 +32,16 @@ TODO (siehe Klasse GraphRes.java)
 Bei der JS-GUI handelt es sich um statische HTML/CSS/JS Dateien im Verzeichnis **src\main\webapp\static**.
 
 ### Testen der JS-GUI:
-1a. Folgende Website aufrufen: http://localhost:7474/webapi/initJetty 
-1b. Oder einen beliebigen Webserver installieren und das Verzeichnis **src\main\webapp** auf Port 8080 als statischen Inhalt servieren
-2. Dann diese Adresse aufrufen: http://localhost:8080/index.html (=>GUI fragt nach Bezeichnung für neues Dokument)
 
-Die Features der GUI sind:
+Die GUI kann man auf drei verschiedene Arten laden (entweder oder): 
+
+1. Einfach nur die Datei **src/main/webapp/static/index.html** mit dem Browser öffnen.
+2. Einen beliebigen Webserver installieren und das Verzeichnis **src/main/webapp/static** auf Port 8080 als statischen Inhalt servieren.
+3. Folgende URL aufrufen, um den eingebauten Service zu starten: http://localhost:7474/webapi/initJetty (Hierbei ist zu bedenken, dass dann der static-Ordner aus dem JAR-Package und nicht aus dem o.g. Verziechnis serviert wird. 
+
+Dann diese Adresse aufrufen: http://localhost:8080/index.html (=>GUI fragt nach Bezeichnung für neues Dokument)
+
+### Die Features der JS-GUI sind:
 
 - **Hinzufügen von Nodes** durch das "+" in der Symbolleiste, dann Linksklick auf die Leinwand.
 - **Nodes verbinden** via Drag und Drop aus der Mitte heraus.
@@ -53,6 +58,6 @@ Die Features der GUI sind:
 - Bietet komplexe Operationen auf Graphen mit einer einzigen Zeile Code via einer SQL-ähnlichen Abfragesprache (Cypher) 
 - Bietet aber auch direkten Zugriff ohne Cypher, sodass man Knoten Laden und die Kanten dann nach belieben verfolgen kann. 
 - Property-Maps ermöglichen die flexible Speicherung von Eigenschaften. So müssen keine starren Modellklassen geplant, gepflegt und konsistent gehalten werden. 
-- Mit Hilfe von OGM bestünde die Möglichkeit, Graphen in vorgefertigte Klassen de-serialiseren lassen. 
+- Mit Hilfe von OGM bestünde die Möglichkeit, Graphen in vorgefertigte Klassen de-serialiseren zu lassen. 
 - Neo4j ist sehr leichtgewichtig und flexibel (muss nichtmal installiert werden)
 
