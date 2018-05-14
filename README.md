@@ -16,7 +16,7 @@ Man kann den Graphen in Neo4j sehen und manipulieren während der GUI-REST-Servi
 `mvn clean test` (im Hauptverzeichnis des Projektes - Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
 #### Packaging mit Maven
-Im Hauptverzeichnis des Projektes: `mvn clean package` (im Hauptverzeichnis des Projektes)
+`mvn clean package` (im Hauptverzeichnis des Projektes)
 
 Dabei entsteht im target-Ordner ein JAR-Package, was man dann in Neo4j als Plugin verwenden kann. Alternativ bestünde die Möglichkeit, dieses Projekt auch eigenständig auszuführen. Dann sieht man die Neo4j-Browseroberfläche beim Testen aber nicht. 
 
