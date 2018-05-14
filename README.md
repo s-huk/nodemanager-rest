@@ -13,15 +13,15 @@ Man kann den Graphen in Neo4j sehen und manipulieren während der GUI-REST-Servi
 2. JUnit Test über die Klasse Tests.java durchführen (Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
 #### Als Test-Service mit Maven
-`mvn clean test` (Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
+Im Hauptverzeichnis des Projektes: `mvn clean test` (Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
 #### Packaging mit Maven
-`mvn clean package` 
+Im Hauptverzeichnis des Projektes: `mvn clean package` 
 
 Dabei entsteht im target-Ordner ein JAR-Package, was man dann in Neo4j als Plugin verwenden kann. Alternativ bestünde die Möglichkeit, dieses Projekt auch eigenständig auszuführen. Dann sieht man die Neo4j-Browseroberfläche beim Testen aber nicht. 
 
 #### Ausführen als Service-Deployment in Docker (Windows)
-install-docker.bat 
+Im Hauptverzeichnis des Projektes: `install-docker.bat`
 
 Nun läuft der REST-Service in Docker. Beenden: `docker stop neo`
 
