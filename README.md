@@ -7,12 +7,11 @@
 Der GUI-REST-Service ist leichtgewichtig (nur Jersey/JAX-RS) und läuft derzeit innerhalb des Neo4j Server-Prozesses, um ein leichteres Testen und Ausführen zu ermöglichen. Er kann mit ein paar Änderungen aber auch leicht eigenständig (z.B. in Catalina oder Jetty) laufen. 
 Man kann den Graphen in Neo4j sehen und manipulieren während der GUI-REST-Service läuft. Das ist für das Debugging sehr praktisch.
 
-### Ausführen
-#### Als Test-Service in der IDE:
+#### Ausführen als Test-Service in der IDE:
 1. Das Projekt als Maven-Projekt importieren.
 2. JUnit Test über die Klasse Tests.java durchführen (Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
-#### Als Test-Service mit Maven
+#### Ausführen als Test-Service mit Maven
 `mvn clean test` (im Hauptverzeichnis des Projektes - Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
 #### Packaging mit Maven
