@@ -4,7 +4,8 @@
 //window.zoom = 0.7; //0.7
 window.zoom = 1; //0.7
 var baseURL = "http://localhost:7474/";
-var baseWebURL = "http://localhost:8080/";
+//var baseWebURL = window.location.protocol+"//"+window.location.hostname+":"+window.location.port+window.location.pathname
+var baseWebURL = window.location.href;
 
 var supressBrowserContextMenu = true;
 NODE_ID_PREFIX = "FOG";
@@ -59,6 +60,8 @@ function tag(name, attrs) {
 }
 
 
+
+
 if (!isInt(param_docId)) {
     var docName = prompt("Document not provided. Chose a name if you want to create a new document:", "New Document");
     if (docName) {
@@ -72,7 +75,7 @@ if (!isInt(param_docId)) {
                 //var posi = window.location.href.indexOf("index.html");
                 //var newURL = window.location.href.substring(0, posi);
                 //window.location.href = newURL+"index.html";
-                window.location.href = baseWebURL+"index.html?docId="+box.id;
+                window.location.href = baseWebURL+"?docId="+box.id;//"index.html?docId="+box.id;
                 //loadGraph();
 
 /*               

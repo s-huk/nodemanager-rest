@@ -3,8 +3,10 @@ package de.tub.mcc.fogmock.nodemanager.graphserv;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Map;
+
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -20,11 +22,19 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
+
 import org.codehaus.jackson.JsonEncoding;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.glassfish.jersey.internal.guava.Iterators;
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Handler;
+import org.eclipse.jetty.server.HandlerContainer;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
+import org.eclipse.jetty.server.handler.DefaultHandler;
+import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
 import org.neo4j.graphdb.Node;
@@ -35,6 +45,8 @@ import org.neo4j.graphdb.Result;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.helpers.collection.Iterables;
 import org.neo4j.helpers.collection.MapUtil;
+import org.neo4j.kernel.internal.GraphDatabaseAPI;
+import org.neo4j.logging.Log;
 
 import static org.neo4j.graphdb.Direction.INCOMING;
 import static org.neo4j.graphdb.Direction.OUTGOING;
@@ -44,26 +56,60 @@ import static org.neo4j.graphdb.Direction.OUTGOING;
  */
 @Path("/")
 public class GraphRes {
-	
-	//graphDb = 
+
+
 	GraphDatabaseService graphDb;
 	private final Label FOG = Label.label( "FOG" );
 	private final Label DOC = Label.label( "DOC" );
 	private static final RelationshipType DOC2FOG = RelationshipType.withName( "DOC2FOG" );
 	private static final RelationshipType FOG2FOG = RelationshipType.withName( "FOG2FOG" );
 	
+	
+	//private static Logger LOGGER = Logger.getLogger(GraphRes.class.getName());
+	
 	private ObjectMapper objectMapper = new ObjectMapper();
 	
+	private static Server jetty; 
 	
-	public GraphRes( @Context GraphDatabaseService db ) {
-		this.graphDb = db; //new GraphDatabaseFactory().newEmbeddedDatabase( databaseDirectory );
+
+	public GraphRes( @Context GraphDatabaseService db ) {  //, @Context Log LOGGER  
+		this.graphDb = db; //new GraphDatabaseFactory().newEmbeddedDatabase( databaseDirectory );		
 	}	
 	
 	
 	
-	@Path("/test")
+	
+	@Path("/initJetty")
 	@GET
 	public Response testRes() {
+		if ( jetty == null) {
+			System.out.println("INIT JETTY ON 8080");
+
+			jetty = new Server(8080);
+			
+		
+		    ResourceHandler resource_handler = new ResourceHandler();
+		    resource_handler.setDirectoriesListed(true);
+		    resource_handler.setWelcomeFiles(new String[]{ "index.html" });
+
+
+		    ClassLoader cl = GraphRes.class.getClassLoader();
+		    URL url = cl.getResource("static");
+		    String strPath = url.toExternalForm();
+		    resource_handler.setResourceBase(strPath);
+
+
+		    HandlerList handlers = new HandlerList();
+		    handlers.setHandlers(new Handler[] { resource_handler, new DefaultHandler() });
+		    jetty.setHandler(handlers);
+		    try {
+				jetty.start();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}			
 		return Response.ok().build();
 	} 
 
@@ -71,14 +117,10 @@ public class GraphRes {
 	
 
 	
-	
-	
-
-	// http://localhost:8080/webapi/doc/0
-	//@Produces(MediaType.TEXT_PLAIN)
-	@Path("/doc/{docName}")
+	@Produces( MediaType.APPLICATION_JSON )
+	@Path("/doc/{docName}") // http://localhost:8080/webapi/doc
 	@POST
-	public Response createDoc(  @PathParam("docName") final String docName  ) {
+	public Response createDoc(  @PathParam("docName") final String docName) {
 		final Map<String, Object> params = MapUtil.map( "docName", docName );
 		
 		System.out.println("Query: create docNode with name: " + docName);
@@ -155,10 +197,22 @@ public class GraphRes {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/doc")
 	@POST
-	public Response createNetwork( SkeletonGraph message ) {
+	public Response parseAndStoreNetwork( SkeletonGraph message ) {
+		final Map<String, Object> params = MapUtil.map("docProps", message.props, "fogNodes", message.fogNodes);
+		System.out.println( message.id + " :::: "  ); // + message.fogNodes.length
 		
-		System.out.println( message + " :::: "  ); // + message.fogNodes.length
-		//TODO:
+//        /*
+//         * execute manipulation 
+//         */
+//        try ( Transaction tx = graphDb.beginTx();
+//        	  Result result = graphDb.execute( "CREATE (d: DOC) SET d=$docProps WITH d UNWIND $fogNodes as n CREATE (n:FOG)<-[:DOC2FOG]-(d:DOC)-[:DOC2FOG]->(n2:FOG) WHERE ID(d)=$docId AND ID(n1)=$nodeFromId AND ID(n2)=$nodeToId MERGE (n1)-[r:FOG2FOG]->(n2)", params )
+//        ) {
+//            if ( result.getQueryStatistics().getRelationshipsCreated() != 1 )  return Response.notModified().build();
+//        	tx.success();
+//	    } catch (Exception e) {
+//	    	e.printStackTrace();
+//	    	return Response.status(500).build();
+//	    }			
 		
         return Response.ok().build();
                 
@@ -285,12 +339,9 @@ public class GraphRes {
 
 
 
-
-
-
 	@Path("/doclist")
 	@GET
-	public Response queryDocList() {
+	public Response loadDocList() {
 		
 		
 		System.out.println("Query: get all docs");
@@ -331,12 +382,28 @@ public class GraphRes {
     	
 	} 	
 	
-	// http://localhost:8080/webapi/doc/0
+
 	@Path("/doc/{docId}")
 	@GET
-	public Response queryDoc( @PathParam("docId") final Long docId ) {
+	public Response loadDoc( @PathParam("docId") final Long docId ) {
 		
 		System.out.println("Query: get doc with id " + docId);
+		
+		/*
+		 * check if document exists
+		 */
+		try ( Transaction tx = graphDb.beginTx() ) {
+			Node doc = graphDb.getNodeById(docId); 
+	    	if ( !doc.hasLabel(DOC) ) {
+	    		return Response.status(404).entity( "Document not found " ).type( MediaType.TEXT_PLAIN ).build();
+	    	}
+	    	tx.success();
+		}
+
+    	
+		/*
+		 * send response
+		 */    	
         StreamingOutput stream = new StreamingOutput()
         {
             @Override
@@ -344,8 +411,6 @@ public class GraphRes {
                 JsonGenerator jg = objectMapper.getJsonFactory().createJsonGenerator( os, JsonEncoding.UTF8 );
                 jg.writeStartObject();
                 
-                
-
                 try ( Transaction tx = graphDb.beginTx() ) {
                 	Node doc = graphDb.getNodeById(docId); // findNodes(DOC, "name", docName)
                 	

@@ -5,14 +5,15 @@
   <artifactId>graph-service</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>graph-service Maven Webapp</name>
+  <name>graph-service</name>
   <url>http://maven.apache.org</url>
   <properties>
       <java-version>1.8</java-version>
       <maven-compiler-plugin-version>3.6.1</maven-compiler-plugin-version>
+      <jetty.version>9.2.22.v20170606</jetty.version>
   </properties>  
   <dependencies>
-  
+  <!-- 
 	<dependency>
 	    <groupId>org.glassfish.jersey.bundles</groupId>
 	    <artifactId>jaxrs-ri</artifactId>
@@ -23,7 +24,19 @@
 	    <artifactId>jersey-media-moxy</artifactId>
 	    <version>2.27</version>
 	</dependency>
-	
+    <dependency> 
+        <groupId>org.neo4j.app</groupId> 
+        <artifactId>neo4j-server</artifactId> 
+        <version>3.3.5</version> 
+        <scope>provided</scope> 
+    </dependency>     	
+ -->	
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>${jetty.version}</version>
+        <scope>provided</scope>
+    </dependency>
     <dependency>
 	    <groupId>org.neo4j</groupId>
 	    <artifactId>neo4j</artifactId>
@@ -85,6 +98,17 @@
   </dependencies>
   <build>
     <finalName>graph-service</finalName>
+    <sourceDirectory>src/main/java</sourceDirectory>
+	<resources>
+	  <resource>
+	    <directory>src/main/webapp</directory>
+	  </resource>
+	</resources>
+    <testResources>
+      <testResource>
+        <directory>src/main/webapp</directory>
+      </testResource>
+    </testResources>	
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -136,23 +160,51 @@
           </execution> 
         </executions> 
       </plugin> 
-      
+<!--            
+      <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+              <execution>
+                  <id>copy-resource-one</id>
+                  <phase>install</phase>
+                  <goals>
+                      <goal>copy-resources</goal>
+                  </goals>
+
+                  <configuration>
+                      <outputDirectory>${basedir}/docker/plugins</outputDirectory>
+                      <resources>
+                          <resource>
+                              <directory>/target</directory>
+                              <includes>
+                                  <include>graph-service-jar-with-dependencies.jar</include>
+                              </includes>
+                          </resource>
+                      </resources>
+                  </configuration>
+              </execution>
+         </executions>
+      </plugin>    
+-->        
+<!--      
       <plugin> 
         <groupId>org.apache.maven.plugins</groupId> 
         <artifactId>maven-surefire-plugin</artifactId> 
         <configuration> 
                 <skipTests>true</skipTests>                   
         </configuration> 
-      </plugin>               
-<!--         
+      </plugin>
+-->               
+         
         <plugin>
 	        <artifactId>maven-war-plugin</artifactId>
 	        <version>3.0.0</version>
 	        <configuration>
-	          <warSourceDirectory>WebContent</warSourceDirectory>
+	          <warSourceDirectory>src/main/webapp</warSourceDirectory>
 	        </configuration>
         </plugin>
--->
+
     </plugins>    
   </build>
 </project>
