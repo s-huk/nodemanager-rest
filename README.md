@@ -27,8 +27,7 @@ Nun läuft der REST-Service in Docker. Beenden: `docker stop neo`
 ## Frontend-Komponente: JS-GUI
 Bei der JS-GUI handelt es sich um statische HTML/CSS/JS Dateien im Verzeichnis **src\main\webapp\static**.
 
-### Testen der JS-GUI:
-
+#### Testen der JS-GUI:
 Die GUI kann man auf drei verschiedene Arten laden (entweder oder): 
 
 1. Einfach nur die Datei **src/main/webapp/static/index.html** mit dem Browser öffnen.
