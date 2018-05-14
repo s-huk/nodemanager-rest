@@ -1,8 +1,8 @@
 # nodemanager-rest
 
 
-## Backend-Komponente: GUI-REST-Service inkl. Tests
-*Stand:* Kann Graphdokumente/Knoten/Kanten anlegen/löschen, auflisten, serialisieren, de-serialisieren (JSON), in Neo4j speichern. 
+## Backend-Komponente: GUI-REST-Service
+*Stand:* Kann Graphdokumente/Knoten/Kanten anlegen/löschen, auflisten, serialisieren, de-serialisieren (JSON), in Neo4j speichern. Der wesentliche Code befindet sich in der Klasse **GraphRes.java**.
 
 Der GUI-REST-Service ist leichtgewichtig (nur Jersey/JAX-RS) und läuft derzeit innerhalb des Neo4j Server-Prozesses, um ein leichteres Testen und Ausführen zu ermöglichen. Er kann mit ein paar Änderungen aber auch leicht eigenständig (z.B. in Catalina oder Jetty) laufen. 
 Man kann den Graphen in Neo4j sehen und manipulieren während der GUI-REST-Service läuft. Das ist für das Debugging sehr praktisch.
@@ -12,21 +12,18 @@ Man kann den Graphen in Neo4j sehen und manipulieren während der GUI-REST-Servi
 1. Das Projekt als Maven-Projekt importieren.
 2. JUnit Test über die Klasse Tests.java durchführen (Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
-### Als Test-Service mit Maven
+#### Als Test-Service mit Maven
 `mvn clean test` (Es öffnet sich ein kleines Fenster. Wenn man es schließt, dann beendet sich der Service.)
 
-### Packaging mit Maven
+#### Packaging mit Maven
 `mvn clean package` 
 
 Dabei entsteht ein JAR-Package, was man dann in Neo4j als Plugin verwenden kann. Alternativ bestünde die Möglichkeit, dieses Projekt auch eigenständig auszuführen. Dann sieht man die Neo4j-Browseroberfläche beim Testen aber nicht. 
 
-### Ausführen as Service-Deployment in Docker (Windows)
+#### Ausführen als Service-Deployment in Docker (Windows)
 install-docker.bat 
 
 Nun läuft der REST-Service in Docker. Beenden: `docker stop neo`
-
-### Spezifikation der REST-Schnittstelle:
-TODO (siehe Klasse GraphRes.java)
 
 ## Frontend-Komponente: JS-GUI
 Bei der JS-GUI handelt es sich um statische HTML/CSS/JS Dateien im Verzeichnis **src\main\webapp\static**.
