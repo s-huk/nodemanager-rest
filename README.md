@@ -18,6 +18,8 @@ Man kann den Graphen in Neo4j sehen und manipulieren während der GUI-REST-Servi
 ### Packaging mit Maven
 `mvn clean package` 
 
+Dabei entsteht ein JAR-Package, was man dann in Neo4j als Plugin verwenden kann. Alternativ bestünde die Möglichkeit, dieses Projekt auch eigenständig auszuführen. Dann sieht man die Neo4j-Browseroberfläche beim Testen aber nicht. 
+
 ### Ausführen as Service-Deployment in Docker (Windows)
 install-docker.bat 
 
